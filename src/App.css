@@ -1,0 +1,86 @@
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+
+.newsletter-section {
+  background-color: white;
+  padding: 30px 0;
+  margin: 40px 0;
+  border-top: 1px solid #e9ecef;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.newsletter-section .subscribe-form {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 0 20px;
+  flex-wrap: wrap;
+}
+
+.newsletter-section .subscribe-form label {
+  font-size: 18px;
+  font-weight: bold;
+  color: black;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.newsletter-section .subscribe-form input[type="email"] {
+  min-width: 250px;
+  padding: 10px 15px;
+  border: 1px solid black;
+  border-radius: 4px;
+  font-size: 14px;
+  flex: 1;
+  background-color: white;
+  color: black;
+}
+
+.newsletter-section .subscribe-form input[type="email"]::placeholder {
+  color: black;
+}
+
+.newsletter-section .subscribe-form input[type="email"]:focus {
+  outline: none;
+  border-color: black;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.25);
+}
+
+.newsletter-section .subscribe-form button {
+  background-color: #808080;
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  white-space: nowrap;
+}
+
+.newsletter-section .subscribe-form button:hover {
+  background-color: #696969;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .newsletter-section .subscribe-form {
+    flex-direction: column;
+    text-align: center;
+    padding: 0 15px;
+  }
+  
+  .newsletter-section .subscribe-form input[type="email"] {
+    min-width: 200px;
+    width: 100%;
+  }
+} 
