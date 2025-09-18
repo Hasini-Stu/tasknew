@@ -21,7 +21,6 @@ export const AuthProvider = ({ children }) => {
       if (firebaseUser) {
         setUser(firebaseUser);
         
-        // Fetch user profile data from Firestore
         try {
           const profileResult = await getUserProfile(firebaseUser.uid);
           if (profileResult.success) {

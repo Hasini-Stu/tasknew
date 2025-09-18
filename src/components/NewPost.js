@@ -47,7 +47,6 @@ const NewPost = () => {
     }
 
     try {
-      // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
       
       alert('Post created successfully!');

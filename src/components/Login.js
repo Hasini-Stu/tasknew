@@ -10,17 +10,15 @@ const Login = () => {
   });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(null); //here1
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Check if user is already logged in
     const currentUser = getCurrentUser();
     if (currentUser) {
       setUser(currentUser);
     }
   }, []);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -30,7 +28,7 @@ const Login = () => {
     if (error) setError('');
   };
 
-  const handleSignOut = async () => {
+  const handleSignOut = async () => { //here2
     setLoading(true);
     setError('');
     
@@ -39,7 +37,6 @@ const Login = () => {
       if (result.success) {
         setUser(null);
         setError('');
-        // Optionally redirect to home page
         navigate('/');
       } else {
         setError(result.error || 'Sign out failed. Please try again.');
@@ -50,7 +47,7 @@ const Login = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }; //heree2
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -98,7 +95,6 @@ const Login = () => {
       <div className="login-form-container">
         <div className="login-form">
           {user ? (
-            // Show sign-out interface when user is logged in
             <>
               <h2>Welcome back!</h2>
               <p>You are currently logged in as: <strong>{user.email}</strong></p>
@@ -119,7 +115,6 @@ const Login = () => {
               </div>
             </>
           ) : (
-            // Show login form when user is not logged in
             <>
               <h2>Login</h2>
               {error && <div className="error-message">{error}</div>}

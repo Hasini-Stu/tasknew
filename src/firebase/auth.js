@@ -49,7 +49,6 @@ export const registerUser = async (userData) => {
     
     console.log('Starting user registration for:', email);
     
-    // Check if user already exists in Firestore
     const usersRef = collection(db, 'users');
     const q = query(usersRef, where('email', '==', email));
     const querySnapshot = await getDocs(q);
@@ -59,16 +58,13 @@ export const registerUser = async (userData) => {
       return { success: false, error: 'An account with this email already exists' };
     }
     
-    // Hash password for additional security
     const hashedPassword = await hashPassword(password);
     console.log('Password hashed successfully');
     
-    // Create Firebase user
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
     console.log('Firebase user created:', user.uid);
     
-    // Store additional user data in Firestore
     const userDocData = {
       firstName,
       lastName,
@@ -87,7 +83,6 @@ export const registerUser = async (userData) => {
   } catch (error) {
     console.error('Registration error:', error);
     
-    // Handle Firebase Auth errors
     if (error.code === 'auth/email-already-in-use') {
       return { success: false, error: 'An account with this email already exists' };
     } else if (error.code === 'auth/invalid-email') {
@@ -108,7 +103,6 @@ export const loginUser = async (email, password) => {
   try {
     console.log('Starting login for:', email);
     
-    // Check if user exists in Firestore
     const usersRef = collection(db, 'users');
     const q = query(usersRef, where('email', '==', email));
     const querySnapshot = await getDocs(q);
@@ -121,7 +115,6 @@ export const loginUser = async (email, password) => {
     const userDoc = querySnapshot.docs[0];
     const userData = userDoc.data();
     
-    // Verify password hash
     const isPasswordValid = await verifyPassword(password, userData.hashedPassword);
     
     if (!isPasswordValid) {
@@ -129,12 +122,10 @@ export const loginUser = async (email, password) => {
       return { success: false, error: 'Invalid email or password' };
     }
     
-    // Sign in with Firebase
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
     console.log('User signed in successfully:', user.uid);
     
-    // Update last login time
     try {
       await setDoc(doc(db, 'users', user.uid), {
         lastLoginAt: new Date()
@@ -148,7 +139,6 @@ export const loginUser = async (email, password) => {
   } catch (error) {
     console.error('Login error:', error);
     
-    // Handle Firebase Auth errors
     if (error.code === 'auth/user-not-found') {
       return { success: false, error: 'Invalid email or password' };
     } else if (error.code === 'auth/wrong-password') {
@@ -167,7 +157,7 @@ export const loginUser = async (email, password) => {
   }
 };
 
-export const logoutUser = async () => {
+export const logoutUser = async () => { //here3
   try {
     console.log('Logging out user');
     await signOut(auth);
