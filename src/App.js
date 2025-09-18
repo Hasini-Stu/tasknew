@@ -1,12 +1,17 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './contexts/AuthContext';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import FeaturedArticles from './components/FeaturedArticles';
 import FeaturedTutorials from './components/FeaturedTutorials';
 import Footer from './components/Footer';
+import Login from './components/Login';
+import SignUp from './components/SignUp';
+import NewPost from './components/NewPost';
 import './App.css';
 
-function App() {
+const Home = () => {
   const handleSubscribe = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -37,19 +42,10 @@ function App() {
 
   return (
     <div className="App">
-      {/* Header */}
       <Header />
-      
-      {/* Hero Section */}
       <Hero />
-      
-      {/* Featured Articles Section */}
       <FeaturedArticles />
-      
-      {/* Featured Tutorials Section */}
       <FeaturedTutorials />
-      
-      {/* Newsletter Signup Section */}
       <div className="newsletter-section">
         <form className="subscribe-form" onSubmit={handleSubscribe}>
           <label htmlFor="email">SIGN UP FOR OUR DAILY INSIDER</label>
@@ -57,10 +53,23 @@ function App() {
           <button type="submit">Subscribe</button>
         </form>
       </div>
-      
-      {/* Footer */}
       <Footer />
     </div>
+  );
+};
+
+function App() {
+  return (
+    <AuthProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/new-post" element={<NewPost />} />
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
 }
 
