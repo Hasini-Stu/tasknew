@@ -49,6 +49,7 @@ const Header = () => {
 
           <nav className="nav-links">
             <Link to="/new-post" className="nav-link">New Post</Link>
+            <Link to="/find-question" className="nav-link">Find Question</Link>
             {isAuthenticated ? (
               <div className="user-menu">
                 <span className="welcome-text">

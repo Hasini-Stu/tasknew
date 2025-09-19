@@ -1,6 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
+import { getStorage } from 'firebase/storage';
 
 
 const validateConfig = () => {
@@ -37,11 +38,13 @@ const firebaseConfig = {
 let app;
 let db;
 let auth;
+let storage;
 
 try {
   app = initializeApp(firebaseConfig);
   db = getFirestore(app);
   auth = getAuth(app);
+  storage = getStorage(app);
   
   console.log('Firebase initialized successfully');
 } catch (error) {
@@ -49,5 +52,5 @@ try {
   console.error('Please check your Firebase configuration in the .env file');
 }
 
-export { db, auth };
+export { db, auth, storage };
 export default app;

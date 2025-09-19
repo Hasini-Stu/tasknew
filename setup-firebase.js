@@ -105,3 +105,4 @@ console.log('- Firebase Console: https://console.firebase.google.com');
 console.log('- Firebase Documentation: https://firebase.google.com/docs');
 console.log('- Setup Instructions: FIREBASE_SETUP_INSTRUCTIONS.md');
 console.log('- Test Plan: AUTHENTICATION_TEST_PLAN.md');
+

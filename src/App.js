@@ -9,6 +9,7 @@ import Footer from './components/Footer';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import NewPost from './components/NewPost';
+import FindQuestion from './components/FindQuestion';
 import './App.css';
 
 const Home = () => {
@@ -67,6 +68,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/new-post" element={<NewPost />} />
+          <Route path="/find-question" element={<FindQuestion />} />
         </Routes>
       </Router>
     </AuthProvider>
